@@ -1,0 +1,400 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLASSIC GAME</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+
+
+    <header class="head">
+
+        <div class="logo">
+            <h2>MODE PLAY</h2>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="/login/">Login</a></li>
+                <li><a href="/signup/">Sign Up</a></li>
+                <li>
+                    <i class="ri-moon-fill" id="themeBtn"></i>
+                </li>
+            </ul>
+        </nav>
+
+
+    </header>
+
+
+    {% if messages %}
+    {% for message in messages %}
+    <div id="msg">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+    <section id="home" class="intro">
+
+        <div class="intro-text">
+
+            <h1>Welcome To Mode play</h1>
+
+            <p>
+                Mode play is a community created for gamers.
+                Download games, discover new adventures,
+                meet friends and enjoy gaming together.
+            </p>
+
+            <a href="/signup/" class="btn">
+                Join Our Community
+            </a>
+
+        </div>
+
+        <div class="intro-image">
+
+            <img src="{% static 'images/little.jpg' %}" alt="Gaming">
+
+        </div>
+
+    </section>
+
+    <!-- WHY JOIN -->
+
+    <section class="features">
+
+        <h2>Why Join Us?</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3> Games</h3>
+                <p>Download and discover new games.</p>
+            </div>
+
+            <div class="card">
+                <h3> Community</h3>
+                <p>Talk with gamers around the world.</p>
+            </div>
+
+            <div class="card">
+                <h3> Updates</h3>
+                <p>Stay informed about new releases.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- GAMES -->
+
+    <section id="games" class="games">
+
+        <h2><i class="ri-gamepad-line"></i> Discover Amazing Games</h2>
+
+        <p>
+            Join our community to access hundreds of games,
+            download them, and chat with other players.
+        </p>
+
+        <div class="preview-games">
+
+            <div class="preview-card">
+                <img src="{% static 'images/metro.jpg' %}" alt="">
+                <h3>Metro 2033 Redux</h3>
+            </div>
+
+            <div class="preview-card">
+                <img src="{% static 'images/half.jpg' %}" alt="">
+                <h3>Half life</h3>
+            </div>
+
+            <div class="preview-card">
+                <img src="{% static 'images/inside.jpg' %}" alt="">
+                <h3>Inside</h3>
+            </div>
+
+        </div>
+
+        <div class="preview-action">
+            <a href="/signup/" class="btn">Join To See More</a>
+        </div>
+
+    </section>
+
+
+
+    <!-- ENJOY -->
+
+    <section class="enjoy">
+
+        <h2>Enjoy Your Adventure</h2>
+
+        <p>
+            Explore exciting worlds and become part of a growing gaming community.
+        </p>
+
+        <img src="{% static 'images/last.jpg' %}" alt="Enjoy Gaming">
+
+    </section>
+
+
+    <section id="about" class="about">
+
+        <h2>About MODE PLAY</h2>
+
+        <p>
+            MODE PLAY was created to bring gamers together.
+            Our goal is to provide a place where players can
+            download games, discuss their experiences,
+            and build friendships.
+        </p>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <p>© 2026 F Community - All Rights Reserved</p>
+
+        <button id="meBtn" class="me-btn">BIO</button>
+    </footer>
+
+    <!-- POPUP MODAL -->
+    <div id="meModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+
+            <h2>🌐 My Social Media ROOFTOOP </h2>
+
+            <div class="socials">
+
+                <a href="https://www.instagram.com/jus.t099/" target="_blank">
+                    <i class="ri-instagram-line"></i> Instagram
+                </a>
+
+                <a href="https://github.com/nidsoo" target="_blank">
+                    <i class="ri-github-line"></i> GitHub
+                </a>
+
+                <a href="https://www.reddit.com/user/Legitimate-Throat591/" target="_blank">
+                    <i class="ri-reddit-fill"></i> Reddit
+                </a>
+
+                <a href="https://x.com/BrZaidali" target="_blank">
+                    <i class="ri-twitter-line"></i> Twitter
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        setTimeout(function () {
+
+            let msg = document.getElementById("msg");
+
+            if (msg) {
+                msg.style.display = "none";
+            }
+
+        }, 5000);
+
+        const themeBtn = document.getElementById("themeBtn");
+
+        if (localStorage.getItem("theme") === "light") {
+            document.body.classList.add("light");
+            themeBtn.classList.remove("ri-moon-fill");
+            themeBtn.classList.add("ri-sun-fill");
+        }
+
+        themeBtn.addEventListener("click", () => {
+
+            document.body.classList.toggle("light");
+
+            if (document.body.classList.contains("light")) {
+
+                localStorage.setItem("theme", "light");
+
+                themeBtn.classList.remove("ri-moon-fill");
+                themeBtn.classList.add("ri-sun-fill");
+
+            } else {
+
+                localStorage.setItem("theme", "dark");
+
+                themeBtn.classList.remove("ri-sun-fill");
+                themeBtn.classList.add("ri-moon-fill");
+            }
+
+        });
+
+        const meBtn = document.getElementById("meBtn");
+        const modal = document.getElementById("meModal");
+        const closeBtn = document.querySelector(".close");
+
+        meBtn.addEventListener("click", () => {
+            modal.style.display = "flex";
+        });
+
+        closeBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        for (let i = 0; i < 30; i++) {
+
+            let p = document.createElement("div");
+            p.classList.add("particle");
+
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.animationDuration = (3 + Math.random() * 5) + "s";
+            p.style.opacity = Math.random();
+
+            document.body.appendChild(p);
+        }
+
+        for (let i = 0; i < 25; i++) {
+
+            let particle = document.createElement("div");
+            particle.classList.add("particle");
+
+            particle.style.left = Math.random() * 100 + "vw";
+
+            let size = Math.random() * 3 + 2;
+            particle.style.width = size + "px";
+            particle.style.height = size + "px";
+
+            particle.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+            particle.style.opacity = Math.random() * 0.5;
+
+            document.body.appendChild(particle);
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+<!-- <section id="games">
+
+        <h2>🎮 Game Library</h2>
+
+        <table border="1">
+
+            <tr>
+                <th>Game</th>
+                <th>Genre</th>
+                <th>Size</th>
+                <th>Download</th>
+            </tr>
+
+            <tr>
+                <td>Metro 2033 Redux</td>
+                <td>FPS / Survival</td>
+                <td>10 GB</td>
+                <td><a href="#">Download</a></td>
+            </tr>
+
+            <tr>
+                <td>Little Nightmares</td>
+                <td>Horror Puzzle</td>
+                <td>4 GB</td>
+                <td><a href="#">Download</a></td>
+            </tr>
+
+            <tr>
+                <td>Inside</td>
+                <td>Puzzle Adventure</td>
+                <td>3 GB</td>
+                <td><a href="#">Download</a></td>
+            </tr>
+
+            <tr>
+                <td>Limbo</td>
+                <td>Puzzle Platformer</td>
+                <td>1 GB</td>
+                <td><a href="#">Download</a></td>
+            </tr>
+
+            <tr>
+                <td>Stardew Valley</td>
+                <td>Simulation</td>
+                <td>500 MB</td>
+                <td><a href="#">Download</a></td>
+            </tr>
+
+            <tr>
+                <td>Minecraft</td>
+                <td>Sandbox</td>
+                <td>2 GB</td>
+                <td><a href="#">Download</a></td>
+            </tr>
+
+            <tr>
+                <td>Hollow Knight</td>
+                <td>Metroidvania</td>
+                <td>9 GB</td>
+                <td><a href="#">Download</a></td>
+            </tr>
+
+            <tr>
+                <td>Celeste</td>
+                <td>Platformer</td>
+                <td>1 GB</td>
+                <td><a href="#">Download</a></td>
+            </tr>
+
+            <tr>
+                <td>Undertale</td>
+                <td>RPG</td>
+                <td>300 MB</td>
+                <td><a href="#">Download</a></td>
+            </tr>
+
+            <tr>
+                <td>Terraria</td>
+                <td>Sandbox Adventure</td>
+                <td>500 MB</td>
+                <td><a href="#">Download</a></td>
+            </tr>
+
+        </table>
+
+    </section> -->

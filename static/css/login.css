@@ -1,0 +1,237 @@
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .85)),
+        url("../images/dark.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+}
+
+/* glow */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at top right, rgba(0, 255, 170, .2), transparent 40%),
+        radial-gradient(circle at bottom left, rgba(0, 120, 255, .2), transparent 40%);
+
+    pointer-events: none;
+}
+
+/* =========================================
+   GO BACK BUTTON
+========================================= */
+
+.goback {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+}
+
+.goback a {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, .5);
+    backdrop-filter: blur(10px);
+
+    color: #fff;
+    font-size: 22px;
+
+    text-decoration: none;
+
+    transition: .3s;
+}
+
+.goback a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px #00ff99;
+}
+
+/* =========================================
+   LOGIN / AUTH CONTAINER
+========================================= */
+
+.login-container,
+.auth-container {
+    width: 380px;
+
+    background: rgba(255, 255, 255, .05);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 20px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    box-shadow: 0 0 30px rgba(0, 255, 153, .15);
+
+    animation: fadeIn .8s ease;
+}
+
+/* title */
+.login-container h1,
+.auth-container h1 {
+    color: #00ff99;
+    margin-bottom: 25px;
+    font-size: 32px;
+}
+
+/* =========================================
+   LABELS
+========================================= */
+
+label {
+    display: block;
+    text-align: left;
+
+    margin: 10px 0 5px;
+
+    font-size: 14px;
+    color: #fff;
+}
+
+/* =========================================
+   INPUTS
+========================================= */
+
+input {
+    width: 100%;
+    padding: 12px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, .08);
+    color: white;
+
+    margin-bottom: 15px;
+
+    transition: .3s;
+}
+
+input:focus {
+    background: rgba(0, 255, 153, .1);
+    box-shadow: 0 0 10px rgba(0, 255, 153, .3);
+}
+
+/* =========================================
+   PASSWORD BOX + EYE ICON
+========================================= */
+
+.password-box {
+    position: relative;
+}
+
+.password-box input {
+    padding-right: 45px;
+}
+
+.password-box i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    cursor: pointer;
+
+    color: #aaa;
+    font-size: 20px;
+
+    transition: .3s;
+}
+
+.password-box i:hover {
+    color: #00ff99;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+button {
+    width: 100%;
+    padding: 12px;
+
+    border: none;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    background: linear-gradient(45deg, #00ff99, #00cfff);
+
+    font-weight: bold;
+    font-size: 16px;
+
+    transition: .3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px #00ff99;
+}
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 500px) {
+
+    .login-container,
+    .auth-container {
+        width: 90%;
+        padding: 25px;
+    }
+}

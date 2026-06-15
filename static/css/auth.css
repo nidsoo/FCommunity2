@@ -1,0 +1,226 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .85)),
+        url("../images/cosoms.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* glow */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at top right, rgba(0, 255, 170, .2), transparent 40%),
+        radial-gradient(circle at bottom left, rgba(0, 120, 255, .2), transparent 40%);
+
+    pointer-events: none;
+}
+
+/* =========================
+   AUTH BOX
+========================= */
+
+.auth-container {
+    width: 400px;
+
+    background: rgba(255, 255, 255, .05);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 20px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    box-shadow: 0 0 30px rgba(0, 255, 153, .15);
+
+    animation: fadeIn .8s ease;
+}
+
+/* title */
+.auth-container h1 {
+    color: #00ff99;
+    margin-bottom: 25px;
+    font-size: 32px;
+}
+
+/* =========================
+   FORM SPACING FIX (IMPORTANT)
+========================= */
+
+.auth-container form p {
+    text-align: left;
+    color: white;
+
+    margin-bottom: 18px;
+    /* 👈 SPACE BETWEEN FIELDS */
+}
+
+/* labels */
+.auth-container label {
+    display: block;
+    margin-bottom: 6px;
+    /* 👈 space between label and input */
+    color: white;
+    font-size: 14px;
+}
+
+/* inputs (Django + manual inputs) */
+.auth-container input,
+.auth-container select,
+.auth-container textarea {
+    width: 100%;
+    padding: 12px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, .08);
+    color: white;
+
+    margin-bottom: 16px;
+    /* 👈 SPACE BETWEEN INPUTS */
+    transition: .3s;
+}
+
+/* focus effect */
+.auth-container input:focus {
+    background: rgba(0, 255, 153, .1);
+    box-shadow: 0 0 10px rgba(0, 255, 153, .3);
+}
+
+/* =========================
+   PASSWORD BOX
+========================= */
+
+.password-box {
+    position: relative;
+    margin-bottom: 16px;
+    /* 👈 extra spacing */
+}
+
+.password-box input {
+    padding-right: 45px;
+    margin-bottom: 0;
+    /* avoid double spacing */
+}
+
+/* eye icon */
+.password-box i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    cursor: pointer;
+    color: #aaa;
+    font-size: 20px;
+
+    transition: .3s;
+}
+
+.password-box i:hover {
+    color: #00ff99;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.auth-container button {
+    width: 100%;
+    padding: 12px;
+
+    border: none;
+    cursor: pointer;
+
+    border-radius: 10px;
+
+    background: linear-gradient(45deg, #00ff99, #00cfff);
+
+    font-weight: bold;
+    font-size: 16px;
+
+    margin-top: 10px;
+    /* 👈 space above button */
+
+    transition: .3s;
+}
+
+.auth-container button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px #00ff99;
+}
+
+/* =========================
+   LOGIN LINK
+========================= */
+
+.login-link {
+    display: block;
+    margin-top: 18px;
+
+    color: #00ff99;
+    text-decoration: none;
+
+    transition: .3s;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:500px) {
+    .auth-container {
+        width: 90%;
+        padding: 25px;
+    }
+}

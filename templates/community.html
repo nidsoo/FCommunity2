@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Community</title>
+
+    <link rel="stylesheet" href="{% static 'css/community.css' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+
+    {% if show_welcome %}
+    <div id="msg" class="msg">
+        Welcome to our community 🎉
+    </div>
+    {% endif %}
+
+    <!-- HEADER -->
+
+
+
+    <header class="head">
+
+        <div class="logo">
+            <h2> MODE PLAY</h2>
+        </div>
+
+        <div class="header-right">
+
+            <span class="username">
+                <i class="ri-user-fill"></i>
+                {{ user.username }}
+            </span>
+
+            <a href="/logout/" class="logout-btn">
+                Logout
+            </a>
+
+            <div class="dark" id="themeToggle">
+                <i class="ri-moon-fill" id="themeIcon"></i>
+            </div>
+
+
+        </div>
+
+    </header>
+
+
+    <!-- TOP SECTION -->
+
+    <section class="top-grid">
+
+        <!-- GAME UPDATES -->
+
+        <div class="updates-box">
+
+            <h2>
+                <i class="ri-fire-fill"></i>
+                Latest Updates
+            </h2>
+
+            <ul>
+
+                <li>New games added every week</li>
+                <li>Community game requests</li>
+                <li>Top downloaded games</li>
+                <li>Future multiplayer support</li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="chat-box">
+
+            <img src="{% static 'images/games.png' %}" alt="chat">
+
+            <h2> Live Chat</h2>
+
+            <p>
+                Meet players and discuss your favorite games.
+            </p>
+
+            <a href="/chat/" class="chat-btn">
+                Join Chat
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADD GAME -->
+
+    <section class="add-game">
+
+        <h2>Add New Game</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <input type="text" name="name" placeholder="Game name" required>
+
+            <input type="text" name="desc" placeholder="Description" required>
+
+            <input type="file" name="img" required>
+
+            <input type="url" name="link" placeholder="Download link">
+
+            <button type="submit">
+                Add Game
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- GAMES -->
+
+    <section class="games">
+
+        <h2>Game Library</h2>
+
+        <div class="games-container">
+
+            {% for game in games %}
+
+            <div class="game-card">
+
+                <img src="{{ game.image.url }}" alt="game">
+
+                <h3>{{ game.name }}</h3>
+
+                <p>{{ game.description }}</p>
+
+                <a href="{{ game.download_link }}" target="_blank" class="btn">
+                    Download
+                </a>
+
+                <a href="{% url 'delete_game' game.id %}" class="btn delete">
+                    Delete
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>MODE PLAY</h3>
+
+        <p>
+            A gaming community built for players.
+        </p>
+
+    </footer>
+
+</body>
+
+<script>
+    const toggle = document.getElementById("themeToggle");
+    const icon = document.getElementById("themeIcon");
+
+    // load saved theme
+    if (localStorage.getItem("theme") === "light") {
+        document.body.classList.add("light");
+        icon.classList.remove("ri-moon-fill");
+        icon.classList.add("ri-sun-fill");
+    }
+
+    // click toggle
+    toggle.addEventListener("click", () => {
+        document.body.classList.toggle("light");
+
+        if (document.body.classList.contains("light")) {
+            icon.classList.remove("ri-moon-fill");
+            icon.classList.add("ri-sun-fill");
+            localStorage.setItem("theme", "light");
+        } else {
+            icon.classList.remove("ri-sun-fill");
+            icon.classList.add("ri-moon-fill");
+            localStorage.setItem("theme", "dark");
+        }
+    });
+
+    setTimeout(() => {
+        const msg = document.getElementById("msg");
+
+        if (msg) {
+            msg.style.transition = "0.5s ease";
+            msg.style.opacity = "0";
+            msg.style.transform = "translateY(-20px)";
+
+            setTimeout(() => {
+                msg.style.display = "none";
+            }, 500);
+        }
+    }, 4000);
+</script>
+
+</html>

@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <h1>Create Account</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Username</label>
+            {{ form.username }}
+
+            <label>Email</label>
+            {{ form.email }}
+
+            <label>Password</label>
+            <div class="password-box">
+                {{ form.password }}
+                <i class="ri-eye-line" id="togglePass1"></i>
+            </div>
+
+            <label>Confirm Password</label>
+            <div class="password-box">
+                {{ form.password2 }}
+                <i class="ri-eye-line" id="togglePass2"></i>
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+    </div>
+
+    <script>
+        function toggleEye(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+
+            icon.onclick = () => {
+                if (input.type === "password") {
+                    input.type = "text";
+                    icon.classList.replace("ri-eye-line", "ri-eye-off-line");
+                } else {
+                    input.type = "password";
+                    icon.classList.replace("ri-eye-off-line", "ri-eye-line");
+                }
+            };
+        }
+
+        toggleEye("password1", "togglePass1");
+        toggleEye("password2", "togglePass2");
+    </script>
+
+</body>
+
+</html>

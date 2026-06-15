@@ -1,0 +1,93 @@
+/* ================= GENERAL ================= */
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f0f0f;
+    color: white;
+}
+
+/* ================= HEADER ================= */
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #111;
+}
+
+.head ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+}
+
+.head a {
+    color: white;
+    text-decoration: none;
+}
+
+/* ================= HERO ================= */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px;
+}
+
+.hero-text h1 {
+    font-size: 50px;
+}
+
+.btn {
+    display: inline-block;
+    background: #00ff99;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+/* ================= GAME ================= */
+.games {
+    padding: 50px;
+}
+
+.game-card {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+}
+
+.game-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* ================= CHAT ================= */
+.chat {
+    padding: 50px;
+}
+
+/* ================= MESSAGE ================= */
+.msg {
+    background: green;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* ================= DARK MODE ================= */
+.dark {
+    background: white;
+    color: black;
+}
+
+.dark .head {
+    background: #eee;
+}
+
+.dark .game-card {
+    background: #ddd;
+}
